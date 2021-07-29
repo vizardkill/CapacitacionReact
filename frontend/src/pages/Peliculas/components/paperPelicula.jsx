@@ -14,6 +14,8 @@ const PaperPelicula = ({
     boxOffice,
     awards,
 }) => {
+    console.log(title);
+
     return (
         <Paper>
             <Box></Box>

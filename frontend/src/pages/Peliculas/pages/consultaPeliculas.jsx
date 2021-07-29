@@ -38,6 +38,8 @@ const ConsultaPeliculas = () => {
         strNombre: "",
     });
 
+    const [objPelicula, setObjPelicula] = useState();
+
     const {
         formState: { errors },
         control,
@@ -57,6 +59,16 @@ const ConsultaPeliculas = () => {
             getData(query.strNombre);
         }
     }, [query.strNombre, getData]);
+
+    useEffect(() => {
+        if (data) {
+            if (data.data) {
+                setObjPelicula({
+                    ...data.data,
+                });
+            }
+        }
+    }, [data]);
 
     return (
         <div className={classes.div}>
@@ -111,16 +123,16 @@ const ConsultaPeliculas = () => {
 
                     <Grid container spacing={2} style={{ marginTop: "10px" }}>
                         <Grid item xs={12}>
-                            <Typography>
-                                Resultado
-                                <hr />
-                            </Typography>
+                            <Typography>Resultado</Typography>
+                            <hr />
                         </Grid>
 
                         <Grid item xs={12}>
-                            {!data?.error ? (
-                                <PaperPelicula />
-                            ) : (
+                            {objPelicula ? (
+                                <PaperPelicula title={objPelicula.Title} />
+                            ) : null}
+
+                            {data?.error && (
                                 <Typography variant="h6" align="center">
                                     {data.msg}
                                 </Typography>
