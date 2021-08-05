@@ -4,12 +4,14 @@ const sql = require("mssql");
 //Configuracion
 const { conexion } = require("../../../../common/config/confSQL_connectionDBMarvel");
 
+console.log(conexion)
+
 class daoPersonaje {
-    async setPersona(data) {
+    async setPersonaje(data) {
         try {
             let conn = await new sql.ConnectionPool(conexion).connect();
 
-            let response = await conn.query`
+            let response = await conn.query `
 
             DECLARE @intId INTEGER;
 
@@ -34,8 +36,7 @@ class daoPersonaje {
         } catch (error) {
             let result = {
                 error: true,
-                msg:
-                    error.message ||
+                msg: error.message ||
                     "Error en el servicio setPersona de la clase daoPersonaje.",
             };
 

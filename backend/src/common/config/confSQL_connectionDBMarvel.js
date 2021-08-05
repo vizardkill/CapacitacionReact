@@ -10,6 +10,7 @@ const conexion = {
         encrypt: true,
         enableArithAbort: true,
         useUTC: false,
+        trustServerCertificate: false
     },
     parseJSON: true,
 };
